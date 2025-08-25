@@ -1,15 +1,11 @@
 <template>
   <div class="layout">
-    <header>
-      <h1>Counter</h1>
-    </header>
+    <AppHeader />
 
     <main class="main-container">
       <slot />
     </main>
 
-    <footer>
-      <div>footer</div>
-    </footer>
+    <AppFooter />
   </div>
 </template>
