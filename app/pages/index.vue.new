@@ -1,0 +1,72 @@
+<template>
+  <div>
+    <h2>Lista de Items</h2>
+    <ul>
+      <li v-for="item in items" :key="item.id">
+        {{ item.title }} - {{ item.value }}
+        <button @click="removeItem(item.id)">Eliminar</button>
+      </li>
+    </ul>
+    <div>Total: {{ totalValue }}</div>
+    
+    <div>
+      <h3>Agregar nuevo item</h3>
+      <input v-model="newItem.title" placeholder="Título" />
+      <input v-model.number="newItem.value" type="number" placeholder="Valor" />
+      <button @click="addItem">Agregar</button>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue';
+import store from '~/stores/index';
+
+// Obtener items desde el store de Vuex
+const items = computed(() => store.state.items);
+const totalValue = computed(() => store.getters.getTotalValue);
+
+// Nuevo item
+const newItem = ref({
+  title: '',
+  value: 0
+});
+
+// Acciones
+const addItem = () => {
+  if (newItem.value.title && newItem.value.value > 0) {
+    store.commit('ADD_ITEM', { ...newItem.value });
+    newItem.value = { title: '', value: 0 };
+  }
+};
+
+const removeItem = (id) => {
+  store.commit('DELETE_ITEM', id);
+};
+</script>
+
+<style>
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+input {
+  margin-right: 8px;
+  padding: 4px;
+}
+</style>

@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+input, textarea {
+  border: 0;
+  padding: 0;
+  outline: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+button, input, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+button:-moz-focusring {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
