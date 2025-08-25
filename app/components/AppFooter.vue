@@ -1,41 +1,16 @@
 <template>
   <footer>
     <div class="footer-content">
-      <div>Total General: {{ totalValue }}</div>
-      <div>Total Filtrado: {{ filteredTotalValue }}</div>
+      <div>Total General: {{ totalItems }}</div>
+      <div>Total Filtrado: {{ filteredTotal }}</div>
     </div>
   </footer>
 </template>
 
 <script setup>
-import { computed } from "vue";
-import store from "../stores/index";
-import filtersStore from "../stores/filters";
+import { useFilteredItems } from "../composables/useFilteredItems";
 
-const totalValue = computed(() => store.getters.getTotalValue);
-
-const filteredTotalValue = computed(() => {
-  let result = store.state.items;
-
-  if (filtersStore.state.searchText) {
-    const search = filtersStore.state.searchText.toLowerCase();
-    result = result.filter((item) => item.title.toLowerCase().includes(search));
-  }
-
-  if (filtersStore.state.filters.minValue > 0) {
-    result = result.filter(
-      (item) => item.value >= filtersStore.state.filters.minValue
-    );
-  }
-
-  if (filtersStore.state.filters.maxValue > 0) {
-    result = result.filter(
-      (item) => item.value <= filtersStore.state.filters.maxValue
-    );
-  }
-
-  return result.reduce((total, item) => total + item.value, 0);
-});
+const { totalItems, filteredTotal } = useFilteredItems();
 </script>
 
 <style scoped>
