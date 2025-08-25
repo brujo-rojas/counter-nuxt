@@ -8,18 +8,27 @@
     <div v-for="item in items" :key="item.id" class="item">
       <div class="item-header">
         <h3 class="item-title">{{ item.title }}</h3>
+
+        <div class="counter-controls">
+          <button @click="decrementItem(item.id)" class="decrement-btn">
+            -1
+          </button>
+          <span>
+            {{ item.value }}
+          </span>
+          <button @click="incrementItem(item.id)" class="increment-btn">
+            +1
+          </button>
+        </div>
+
         <div class="item-actions">
-          <button @click="editItem(item)" class="edit-btn">Editar</button>
           <button @click="removeItem(item.id)" class="delete-btn">
             Eliminar
           </button>
         </div>
       </div>
-      <p class="item-description">Valor: {{ item.value }}</p>
     </div>
   </div>
-
-  <div class="total">Total: {{ totalValue }}</div>
 
   <div v-if="showDialog" class="dialog-overlay" @click="closeDialog">
     <div class="dialog-content" @click.stop>
@@ -61,12 +70,6 @@
       </div>
     </div>
   </div>
-
-  <div class="store-info">
-    <h4>Estado de Vuex:</h4>
-    <p>Items: {{ items.length }}</p>
-    <p>Total: {{ totalValue }}</p>
-  </div>
 </template>
 
 <script setup>
@@ -74,7 +77,6 @@ import { ref, computed } from "vue";
 import store from "../../stores/index";
 
 const items = computed(() => store.state.items);
-const totalValue = computed(() => store.getters.getTotalValue);
 
 const newItem = ref({ title: "", value: 0 });
 const editMode = ref(false);
@@ -121,6 +123,28 @@ const addItem = () => {
   if (newItem.value.title && newItem.value.value > 0) {
     store.dispatch("addItem", { ...newItem.value });
     closeDialog();
+  }
+};
+
+const incrementItem = (id) => {
+  const item = items.value.find((item) => item.id === id);
+  if (item) {
+    store.dispatch("updateItem", {
+      id: item.id,
+      title: item.title,
+      value: item.value + 1,
+    });
+  }
+};
+
+const decrementItem = (id) => {
+  const item = items.value.find((item) => item.id === id);
+  if (item && item.value > 0) {
+    store.dispatch("updateItem", {
+      id: item.id,
+      title: item.title,
+      value: item.value - 1,
+    });
   }
 };
 </script>
