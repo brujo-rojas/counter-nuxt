@@ -13,7 +13,7 @@
   </div>
 
   <div class="items-list">
-    <div v-for="item in items" :key="item.id" class="item">
+    <div v-for="item in filteredItems" :key="item.id" class="item">
       <div class="item-header">
         <h3 class="item-title">{{ item.title }}</h3>
 
@@ -62,8 +62,6 @@ const editingItemId = ref(null);
 const showDialog = ref(false);
 const dialogItem = ref(null);
 
-const items = filteredItems;
-
 const openDialog = () => {
   editMode.value = false;
   editingItemId.value = null;
@@ -89,6 +87,7 @@ const handleSave = (itemData) => {
   }
   closeDialog();
 };
+
 const removeItem = (id) => {
   store.dispatch("deleteItem", id);
 };

@@ -5,7 +5,3 @@
     </NuxtLayout>
   </div>
 </template>
-
-<style lang="scss">
-@use "~/scss/main.scss";
-</style>
