@@ -3,13 +3,24 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-
+  
   h1 {
     font-size: 24px;
     margin: 0;
     color: #333;
   }
-
+  
+  .header-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    
+    .results-count {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+  
   .add-btn {
     background: #007bff;
     color: white;
@@ -17,14 +28,22 @@
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
-
+    
     &:hover {
       background: #0056b3;
     }
+    
+    &:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+    }
   }
-}
-
-.items-list {
+  
+  .limits-info {
+    color: #666;
+    font-size: 12px;
+  }
+}.items-list {
   .item {
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -61,12 +80,6 @@
           color: white;
         }
       }
-    }
-
-    .item-description {
-      color: #666;
-      margin: 0;
-      font-size: 14px;
     }
 
     .counter-controls {
@@ -110,4 +123,13 @@
       }
     }
   }
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 8px;
 }

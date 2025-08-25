@@ -1,17 +1,27 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 import type { Item } from "~/types/items";
 
 interface State {
   items: Item[];
 }
 
+const loadFromStorage = (): Item[] => {
+  if (typeof window !== "undefined") {
+    const stored = localStorage.getItem("counter-items");
+    return stored ? JSON.parse(stored) : [];
+  }
+  return [];
+};
+
+const saveToStorage = (items: Item[]) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("counter-items", JSON.stringify(items));
+  }
+};
+
 const store = createStore<State>({
   state: (): State => ({
-    items: [
-      { id: 1, title: "Item 1", value: 10 },
-      { id: 2, title: "Item 2", value: 20 },
-      { id: 3, title: "Item 3", value: 30 },
-    ],
+    items: loadFromStorage(),
   }),
 
   mutations: {
@@ -20,6 +30,7 @@ const store = createStore<State>({
         id: Date.now(),
         ...newItem,
       });
+      saveToStorage(state.items);
     },
 
     UPDATE_ITEM(state: State, updatedItem: Item) {
@@ -28,11 +39,13 @@ const store = createStore<State>({
       );
       if (index !== -1) {
         state.items.splice(index, 1, updatedItem);
+        saveToStorage(state.items);
       }
     },
 
     DELETE_ITEM(state: State, itemId: number) {
       state.items = state.items.filter((item: Item) => item.id !== itemId);
+      saveToStorage(state.items);
     },
   },
 

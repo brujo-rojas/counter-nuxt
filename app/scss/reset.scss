@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   font-family: sans-serif;
 }
 
@@ -20,13 +21,15 @@ button {
   background: transparent;
 }
 
-input, textarea {
+input,
+textarea {
   border: 0;
   padding: 0;
   outline: none;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -35,16 +38,15 @@ img {
   height: auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
-}
-
-button, input, textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 
 button::-moz-focus-inner {

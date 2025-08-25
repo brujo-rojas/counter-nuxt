@@ -1,7 +1,15 @@
 <template>
   <div class="items-header">
     <h1>Lista de Items</h1>
-    <button @click="openDialog" class="add-btn">Agregar Item</button>
+    <div class="header-info">
+      <button
+        @click="openDialog"
+        :disabled="allItems.length >= LIMITS.MAX_ITEMS"
+        class="add-btn"
+      >
+        Agregar Item
+      </button>
+    </div>
   </div>
 
   <div class="items-list">
@@ -49,14 +57,20 @@
         </div>
 
         <div class="input-group">
-          <label for="value">Valor:</label>
+          <label for="value">Valor (máx {{ LIMITS.MAX_ITEM_VALUE }}):</label>
           <input
             id="value"
             v-model.number="newItem.value"
             type="number"
+            :min="LIMITS.MIN_ITEM_VALUE"
+            :max="LIMITS.MAX_ITEM_VALUE"
             placeholder="Ingresa el valor"
             class="dialog-input"
           />
+        </div>
+
+        <div v-if="validationError" class="error-message">
+          {{ validationError }}
         </div>
       </div>
 
@@ -75,40 +89,84 @@
 <script setup>
 import { ref, computed } from "vue";
 import store from "../../stores/index";
-
-const items = computed(() => store.state.items);
+import filtersStore from "../../stores/filters";
+import { LIMITS } from "../../constants/limits";
 
 const newItem = ref({ title: "", value: 0 });
 const editMode = ref(false);
 const editingItemId = ref(null);
 const showDialog = ref(false);
+const validationError = ref("");
 
-const removeItem = (id) => {
-  store.dispatch("deleteItem", id);
-};
+const allItems = computed(() => store.state.items);
 
-const editItem = (item) => {
-  editMode.value = true;
-  editingItemId.value = item.id;
-  newItem.value = { title: item.title, value: item.value };
-  showDialog.value = true;
-};
+const items = computed(() => {
+  let result = allItems.value;
 
-const saveEdit = () => {
-  if (editingItemId.value && newItem.value.title && newItem.value.value > 0) {
-    store.dispatch("updateItem", {
-      id: editingItemId.value,
-      title: newItem.value.title,
-      value: newItem.value.value,
-    });
-    closeDialog();
+  if (filtersStore.state.searchText) {
+    const search = filtersStore.state.searchText.toLowerCase();
+    result = result.filter((item) => item.title.toLowerCase().includes(search));
   }
+
+  if (filtersStore.state.filters.minValue > 0) {
+    result = result.filter(
+      (item) => item.value >= filtersStore.state.filters.minValue
+    );
+  }
+
+  if (filtersStore.state.filters.maxValue > 0) {
+    result = result.filter(
+      (item) => item.value <= filtersStore.state.filters.maxValue
+    );
+  }
+
+  if (filtersStore.state.sortBy) {
+    result = [...result].sort((a, b) => {
+      const field = filtersStore.state.sortBy;
+      const aVal = field === "value" ? a[field] : a[field].toLowerCase();
+      const bVal = field === "value" ? b[field] : b[field].toLowerCase();
+
+      let comparison = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+      return filtersStore.state.ascending ? comparison : -comparison;
+    });
+  }
+
+  return result;
+});
+
+const totalValue = computed(() => store.getters.getTotalValue);
+
+const validateItem = () => {
+  validationError.value = "";
+
+  if (!newItem.value.title.trim()) {
+    validationError.value = "El título es requerido";
+    return false;
+  }
+
+  if (newItem.value.value < LIMITS.MIN_ITEM_VALUE) {
+    validationError.value = `El valor mínimo es ${LIMITS.MIN_ITEM_VALUE}`;
+    return false;
+  }
+
+  if (newItem.value.value > LIMITS.MAX_ITEM_VALUE) {
+    validationError.value = `El valor máximo es ${LIMITS.MAX_ITEM_VALUE}`;
+    return false;
+  }
+
+  if (!editMode.value && allItems.value.length >= LIMITS.MAX_ITEMS) {
+    validationError.value = `Máximo ${LIMITS.MAX_ITEMS} items permitidos`;
+    return false;
+  }
+
+  return true;
 };
 
 const openDialog = () => {
   editMode.value = false;
   editingItemId.value = null;
   newItem.value = { title: "", value: 0 };
+  validationError.value = "";
   showDialog.value = true;
 };
 
@@ -117,18 +175,23 @@ const closeDialog = () => {
   editMode.value = false;
   editingItemId.value = null;
   newItem.value = { title: "", value: 0 };
+  validationError.value = "";
 };
 
 const addItem = () => {
-  if (newItem.value.title && newItem.value.value > 0) {
+  if (validateItem()) {
     store.dispatch("addItem", { ...newItem.value });
     closeDialog();
   }
 };
 
+const removeItem = (id) => {
+  store.dispatch("deleteItem", id);
+};
+
 const incrementItem = (id) => {
-  const item = items.value.find((item) => item.id === id);
-  if (item) {
+  const item = allItems.value.find((item) => item.id === id);
+  if (item && item.value < LIMITS.MAX_ITEM_VALUE) {
     store.dispatch("updateItem", {
       id: item.id,
       title: item.title,
@@ -138,8 +201,8 @@ const incrementItem = (id) => {
 };
 
 const decrementItem = (id) => {
-  const item = items.value.find((item) => item.id === id);
-  if (item && item.value > 0) {
+  const item = allItems.value.find((item) => item.id === id);
+  if (item && item.value > LIMITS.MIN_ITEM_VALUE) {
     store.dispatch("updateItem", {
       id: item.id,
       title: item.title,
