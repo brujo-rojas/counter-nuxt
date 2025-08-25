@@ -89,14 +89,6 @@ const handleSave = (itemData) => {
   }
   closeDialog();
 };
-
-const editItem = (item) => {
-  editMode.value = true;
-  editingItemId.value = item.id;
-  dialogItem.value = { title: item.title, value: item.value };
-  showDialog.value = true;
-};
-
 const removeItem = (id) => {
   store.dispatch("deleteItem", id);
 };
