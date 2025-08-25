@@ -1,0 +1,77 @@
+.items-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .add-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    &:hover {
+      background: #0056b3;
+    }
+  }
+}
+
+.items-list {
+  .item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: white;
+    
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      
+      .item-title {
+        font-size: 16px;
+        margin: 0;
+        color: #333;
+      }
+      
+      .item-actions {
+        display: flex;
+        gap: 8px;
+        
+        button {
+          border: none;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          cursor: pointer;
+        }
+        
+        .edit-btn {
+          background: #17a2b8;
+          color: white;
+        }
+        
+        .delete-btn {
+          background: #dc3545;
+          color: white;
+        }
+      }
+    }
+    
+    .item-description {
+      color: #666;
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+}

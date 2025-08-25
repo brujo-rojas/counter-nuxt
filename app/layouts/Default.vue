@@ -4,7 +4,7 @@
       <h1>Counter</h1>
     </header>
 
-    <main>
+    <main class="main-container">
       <slot />
     </main>
 

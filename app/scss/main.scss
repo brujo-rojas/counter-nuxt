@@ -1,2 +1,6 @@
-@use "~/scss/reset.scss";
-@use "~/scss/layout.scss";
+@use './reset';
+
+@use './layout';
+@use './items-page';
+@use './dialog';
+
