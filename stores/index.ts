@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import type { Item } from "~/types/items";
+import { LIMITS } from "../constants/limits";
 
 interface State {
   items: Item[];
@@ -26,6 +27,10 @@ const store = createStore<State>({
 
   mutations: {
     ADD_ITEM(state: State, newItem: Omit<Item, "id">) {
+      if (state.items.length >= LIMITS.MAX_ITEMS) {
+        throw new Error(`No se pueden agregar más de ${LIMITS.MAX_ITEMS} items`);
+      }
+      
       state.items.push({
         id: Date.now(),
         ...newItem,
@@ -77,6 +82,18 @@ const store = createStore<State>({
         (total: number, item: Item) => total + item.value,
         0
       );
+    },
+
+    canAddMoreItems: (state: State) => {
+      return state.items.length < LIMITS.MAX_ITEMS;
+    },
+
+    getItemsCount: (state: State) => {
+      return state.items.length;
+    },
+
+    getMaxItems: () => {
+      return LIMITS.MAX_ITEMS;
     },
   },
 });

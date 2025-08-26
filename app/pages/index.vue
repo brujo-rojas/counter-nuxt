@@ -2,6 +2,7 @@
   <div class="items-header">
     <h1>Lista de Items</h1>
     <div class="header-info">
+      <span class="items-count">{{ allItems.length }}/{{ LIMITS.MAX_ITEMS }} items</span>
       <button
         @click="openDialog"
         :disabled="allItems.length >= LIMITS.MAX_ITEMS"
@@ -10,6 +11,10 @@
         Agregar Item
       </button>
     </div>
+  </div>
+
+  <div v-if="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
 
   <div class="sort-controls">
@@ -87,6 +92,7 @@ const editMode = ref(false);
 const editingItemId = ref(null);
 const showDialog = ref(false);
 const dialogItem = ref(null);
+const errorMessage = ref("");
 
 const updateSortBy = () => {
   filtersStore.dispatch("setSortBy", sortBy.value);
@@ -108,18 +114,25 @@ const closeDialog = () => {
   editMode.value = false;
   editingItemId.value = null;
   dialogItem.value = null;
+  errorMessage.value = "";
 };
 
 const handleSave = (itemData) => {
-  if (editMode.value) {
-    store.dispatch("updateItem", {
-      id: editingItemId.value,
-      ...itemData,
-    });
-  } else {
-    store.dispatch("addItem", itemData);
+  try {
+    errorMessage.value = "";
+    
+    if (editMode.value) {
+      store.dispatch("updateItem", {
+        id: editingItemId.value,
+        ...itemData,
+      });
+    } else {
+      store.dispatch("addItem", itemData);
+    }
+    closeDialog();
+  } catch (error) {
+    errorMessage.value = error.message;
   }
-  closeDialog();
 };
 
 const removeItem = (id) => {

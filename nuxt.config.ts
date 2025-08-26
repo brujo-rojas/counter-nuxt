@@ -11,9 +11,7 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
-  modules: [
-    // No es necesario importar Vuex explícitamente en Nuxt 3/4
-  ],
+  modules: ["@nuxt/icon"],
 
   vite: {
     define: {
