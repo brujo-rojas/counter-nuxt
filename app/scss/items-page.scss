@@ -3,18 +3,18 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  
+
   h1 {
     font-size: 24px;
     margin: 0;
     color: #333;
   }
-  
+
   .header-info {
     display: flex;
     align-items: center;
     gap: 16px;
-    
+
     .items-count {
       color: #666;
       font-size: 14px;
@@ -23,7 +23,7 @@
       border-radius: 4px;
     }
   }
-  
+
   .add-btn {
     background: #007bff;
     color: white;
@@ -31,11 +31,19 @@
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
-    
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
     &:hover {
       background: #0056b3;
     }
-    
+
     &:disabled {
       background: #6c757d;
       cursor: not-allowed;
@@ -57,7 +65,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  
+
   label {
     font-size: 14px;
     color: #333;
@@ -71,9 +79,28 @@
   background: white;
 }
 
+// Clase común para botones con solo iconos
+.icon-btn {
+  border: none;
+  padding: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .sort-checkbox {
   cursor: pointer;
-}.items-list {
+}
+.items-list {
   .item {
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -85,70 +112,83 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      gap: 2rem;
 
       .item-title {
         font-size: 16px;
         margin: 0;
         color: #333;
+        flex: 1;
       }
 
-      .item-actions {
+      .item-controls {
         display: flex;
-        gap: 8px;
+        align-items: center;
+        gap: 3rem;
 
-        button {
-          border: none;
-          padding: 4px 8px;
-          border-radius: 4px;
-          font-size: 12px;
-          cursor: pointer;
+        .counter-controls {
+          display: flex;
+          gap: 4px;
+          align-items: center;
+
+          .decrement-btn {
+            @extend .icon-btn;
+            background: #ffc107;
+            color: #212529;
+
+            &:hover {
+              background: #e0a800;
+            }
+          }
+
+          .counter-value {
+            font-size: 16px;
+            margin: 0 8px;
+            min-width: 20px;
+            text-align: center;
+          }
+
+          .increment-btn {
+            @extend .icon-btn;
+            background: #28a745;
+            color: white;
+
+            &:hover {
+              background: #218838;
+            }
+          }
         }
 
-        .delete-btn {
-          background: #dc3545;
-          color: white;
-        }
-      }
-    }
+        .item-actions {
+          display: flex;
+          gap: 8px;
 
-    .counter-controls {
-      display: flex;
-      gap: 4px;
-      align-items: center;
+          .delete-btn {
+            @extend .icon-btn;
+            background: #dc3545;
+            color: white;
 
-      button {
-        border: none;
-        padding: 4px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        min-width: 30px;
-      }
-
-      .increment-btn {
-        background: #28a745;
-        color: white;
-
-        &:hover {
-          background: #218838;
+            &:hover {
+              background: #c82333;
+            }
+          }
         }
       }
 
-      span {
-        font-size: 16px;
-        margin: 0 8px;
-        width: 20px;
-        text-align: center;
-      }
+      // Responsive: en mobile, stack verticalmente
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
 
-      .decrement-btn {
-        background: #ffc107;
-        color: #212529;
+        .item-title {
+          width: 100%;
+        }
 
-        &:hover {
-          background: #e0a800;
+        .item-controls {
+          align-self: flex-end;
+          width: 100%;
+          justify-content: flex-end;
         }
       }
     }

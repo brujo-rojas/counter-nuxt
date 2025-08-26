@@ -4,7 +4,10 @@
       <div class="filters">
         <div class="row">
           <div class="group">
-            <label>Buscar:</label>
+            <label>
+              <Icon name="heroicons:magnifying-glass" />
+              Buscar:
+            </label>
             <input
               v-model="searchText"
               @input="updateSearchText"
@@ -14,7 +17,10 @@
           </div>
 
           <div class="group">
-            <label>Min:</label>
+            <label>
+              <Icon name="heroicons:funnel" />
+              Min:
+            </label>
             <input
               v-model.number="minValue"
               @input="updateMinValue"
@@ -24,7 +30,10 @@
           </div>
 
           <div class="group">
-            <label>Max:</label>
+            <label>
+              <Icon name="heroicons:funnel" />
+              Max:
+            </label>
             <input
               v-model.number="maxValue"
               @input="updateMaxValue"
@@ -34,6 +43,7 @@
           </div>
 
           <button @click="resetFilters" class="reset">
+            <Icon name="heroicons:arrow-path" />
             Reset ({{ activeFiltersCount }})
           </button>
         </div>

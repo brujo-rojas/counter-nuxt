@@ -8,6 +8,7 @@
         :disabled="allItems.length >= LIMITS.MAX_ITEMS"
         class="add-btn"
       >
+        <Icon name="heroicons:plus" />
         Agregar Item
       </button>
     </div>
@@ -44,22 +45,24 @@
       <div class="item-header">
         <h3 class="item-title">{{ item.title }}</h3>
 
-        <div class="counter-controls">
-          <button @click="decrementItem(item.id)" class="decrement-btn">
-            -1
-          </button>
-          <span>
-            {{ item.value }}
-          </span>
-          <button @click="incrementItem(item.id)" class="increment-btn">
-            +1
-          </button>
-        </div>
+        <div class="item-controls">
+          <div class="counter-controls">
+            <button @click="decrementItem(item.id)" class="decrement-btn">
+              <Icon name="heroicons:minus" />
+            </button>
+            <span class="counter-value">
+              {{ item.value }}
+            </span>
+            <button @click="incrementItem(item.id)" class="increment-btn">
+              <Icon name="heroicons:plus" />
+            </button>
+          </div>
 
-        <div class="item-actions">
-          <button @click="removeItem(item.id)" class="delete-btn">
-            Eliminar
-          </button>
+          <div class="item-actions">
+            <button @click="removeItem(item.id)" class="delete-btn">
+              <Icon name="heroicons:trash" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

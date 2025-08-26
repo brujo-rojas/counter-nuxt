@@ -37,9 +37,16 @@ header {
       color: #fff;
       font-size: 14px;
       min-width: 50px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
     }
   }
-
   .input {
     padding: 6px 8px;
     border: 1px solid #495057;
@@ -62,6 +69,14 @@ header {
     cursor: pointer;
     font-size: 12px;
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
 
     &:hover {
       background: #5a6268;
