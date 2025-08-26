@@ -8,13 +8,17 @@
 
       <div class="dialog-body">
         <div class="input-group">
-          <label for="item-title">Título:</label>
+          <label for="item-title">Título (máx {{ LIMITS.MAX_TITLE_LENGTH }} caracteres):</label>
           <input
             id="item-title"
             v-model="localItem.title"
+            :maxlength="LIMITS.MAX_TITLE_LENGTH"
             placeholder="Ingresa el título"
             class="dialog-input"
           />
+          <div class="character-count">
+            {{ localItem.title.length }}/{{ LIMITS.MAX_TITLE_LENGTH }}
+          </div>
         </div>
 
         <div class="input-group">
@@ -91,6 +95,11 @@ const validateItem = () => {
   
   if (!localItem.value.title.trim()) {
     error.value = "El título es requerido";
+    return false;
+  }
+  
+  if (localItem.value.title.length > LIMITS.MAX_TITLE_LENGTH) {
+    error.value = `El título no puede exceder ${LIMITS.MAX_TITLE_LENGTH} caracteres`;
     return false;
   }
   
