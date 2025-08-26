@@ -1,9 +1,16 @@
+// Variables CSS para Footer
+:root {
+  --footer-bg: #343a40;
+  --footer-text: white;
+  --footer-border: #495057;
+}
+
 footer {
-  background: #343a40;
-  color: white;
+  background: var(--footer-bg);
+  color: var(--footer-text);
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid #495057;
+  border-top: 1px solid var(--footer-border);
   margin-top: 2rem;
 }
 

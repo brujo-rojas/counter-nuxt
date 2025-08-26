@@ -1,3 +1,10 @@
+// Variables CSS para Layout
+:root {
+  --layout-header-bg: #333;
+  --layout-text-light: #fff;
+  --layout-border: #ccc;
+}
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -5,10 +12,10 @@
   height: max-content;
 
   header {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--layout-header-bg);
+    color: var(--layout-text-light);
     padding: 1rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--layout-border);
     position: sticky;
     top: 0;
   }
@@ -24,10 +31,10 @@
   }
 
   footer {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--layout-header-bg);
+    color: var(--layout-text-light);
     padding: 1rem;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--layout-border);
     position: sticky;
     bottom: 0;
   }

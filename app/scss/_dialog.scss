@@ -1,10 +1,28 @@
+// Variables CSS para Dialog
+:root {
+  --dialog-overlay: rgba(0, 0, 0, 0.5);
+  --dialog-bg: white;
+  --dialog-shadow: rgba(0, 0, 0, 0.15);
+  --dialog-border: #eee;
+  --dialog-text: #333;
+  --dialog-text-secondary: #666;
+  --dialog-input-border: #ddd;
+  --dialog-input-focus: #007bff;
+  --dialog-save-btn: #007bff;
+  --dialog-save-hover: #0056b3;
+  --dialog-cancel-btn: #6c757d;
+  --dialog-cancel-hover: #545b62;
+  --error-message-bg: #f8d7da;
+  --error-message-text: #721c24;
+}
+
 .dialog-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--dialog-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,11 +30,11 @@
 }
 
 .dialog-content {
-  background: white;
+  background: var(--dialog-bg);
   border-radius: 8px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--dialog-shadow);
 }
 
 .dialog-header {
@@ -24,11 +42,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--dialog-border);
   
   h3 {
     margin: 0;
-    color: #333;
+    color: var(--dialog-text);
   }
 }
 
@@ -37,10 +55,10 @@
   border: none;
   font-size: 18px;
   cursor: pointer;
-  color: #666;
+  color: var(--dialog-text-secondary);
   
   &:hover {
-    color: #333;
+    color: var(--dialog-text);
   }
 }
 
@@ -55,12 +73,12 @@
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
-    color: #333;
+    color: var(--dialog-text);
   }
   
   .character-count {
     font-size: 12px;
-    color: #666;
+    color: var(--dialog-text-secondary);
     text-align: right;
     margin-top: 4px;
   }
@@ -69,19 +87,19 @@
 .dialog-input {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--dialog-input-border);
   border-radius: 4px;
   box-sizing: border-box;
 
   &:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: var(--dialog-input-focus);
   }
 }
 
 .dialog-footer {
   padding: 16px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--dialog-border);
 }
 
 .dialog-actions {
@@ -97,27 +115,27 @@
   }
 
   .save-btn {
-    background: #007bff;
-    color: white;
+    background: var(--dialog-save-btn);
+    color: var(--dialog-bg);
     
     &:hover {
-      background: #0056b3;
+      background: var(--dialog-save-hover);
     }
   }
 
   .cancel-btn {
-    background: #6c757d;
-    color: white;
+    background: var(--dialog-cancel-btn);
+    color: var(--dialog-bg);
     
     &:hover {
-      background: #545b62;
+      background: var(--dialog-cancel-hover);
     }
   }
 }
 
 .error-message {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--error-message-bg);
+  color: var(--error-message-text);
   padding: 8px;
   border-radius: 4px;
   margin-top: 8px;

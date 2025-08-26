@@ -1,7 +1,20 @@
+// Variables CSS para Header
+:root {
+  --header-bg: #343a40;
+  --header-border: #495057;
+  --header-text: #fff;
+  --header-filter-bg: rgba(0, 0, 0, 0.2);
+  --input-border: #495057;
+  --input-bg: #fff;
+  --reset-btn-bg: #6c757d;
+  --reset-btn-hover: #5a6268;
+  --reset-btn-text: white;
+}
+
 header {
-  background: #343a40;
+  background: var(--header-bg);
   padding: 1rem;
-  border-bottom: 1px solid #495057;
+  border-bottom: 1px solid var(--header-border);
 
   .content {
     max-width: 1200px;
@@ -10,12 +23,12 @@ header {
 
   h1 {
     margin: 0 0 1rem 0;
-    color: #fff;
+    color: var(--header-text);
     text-align: center;
   }
 
   .filters {
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--header-filter-bg);
     padding: 12px;
     border-radius: 6px;
   }
@@ -34,7 +47,7 @@ header {
     gap: 6px;
 
     label {
-      color: #fff;
+      color: var(--header-text);
       font-size: 14px;
       min-width: 50px;
       display: flex;
@@ -49,9 +62,9 @@ header {
   }
   .input {
     padding: 6px 8px;
-    border: 1px solid #495057;
+    border: 1px solid var(--input-border);
     border-radius: 4px;
-    background: #fff;
+    background: var(--input-bg);
     min-width: 120px;
 
     &.small {
@@ -61,8 +74,8 @@ header {
   }
 
   .reset {
-    background: #6c757d;
-    color: white;
+    background: var(--reset-btn-bg);
+    color: var(--reset-btn-text);
     border: none;
     padding: 8px 12px;
     border-radius: 4px;
@@ -79,7 +92,7 @@ header {
     }
 
     &:hover {
-      background: #5a6268;
+      background: var(--reset-btn-hover);
     }
   }
 }

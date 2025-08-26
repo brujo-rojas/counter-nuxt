@@ -1,3 +1,24 @@
+// Variables CSS para Items Page
+:root {
+  --primary-text: #333;
+  --secondary-text: #666;
+  --light-bg: #f8f9fa;
+  --white-bg: white;
+  --border-color: #ddd;
+  --primary-blue: #007bff;
+  --primary-blue-hover: #0056b3;
+  --success-green: #28a745;
+  --success-green-hover: #218838;
+  --warning-yellow: #ffc107;
+  --warning-yellow-hover: #e0a800;
+  --danger-red: #dc3545;
+  --danger-red-hover: #c82333;
+  --disabled-gray: #6c757d;
+  --error-bg: #f8d7da;
+  --error-text: #721c24;
+  --error-border: #f5c6cb;
+}
+
 .items-header {
   display: flex;
   justify-content: space-between;
@@ -7,7 +28,7 @@
   h1 {
     font-size: 24px;
     margin: 0;
-    color: #333;
+    color: var(--primary-text);
   }
 
   .header-info {
@@ -16,17 +37,17 @@
     gap: 16px;
 
     .items-count {
-      color: #666;
+      color: var(--secondary-text);
       font-size: 14px;
       padding: 4px 8px;
-      background: #f8f9fa;
+      background: var(--light-bg);
       border-radius: 4px;
     }
   }
 
   .add-btn {
-    background: #007bff;
-    color: white;
+    background: var(--primary-blue);
+    color: var(--white-bg);
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -41,11 +62,11 @@
     }
 
     &:hover {
-      background: #0056b3;
+      background: var(--primary-blue-hover);
     }
 
     &:disabled {
-      background: #6c757d;
+      background: var(--disabled-gray);
       cursor: not-allowed;
     }
   }
@@ -57,7 +78,7 @@
   gap: 16px;
   margin-bottom: 16px;
   padding: 12px;
-  background: #f8f9fa;
+  background: var(--light-bg);
   border-radius: 4px;
 }
 
@@ -68,15 +89,15 @@
 
   label {
     font-size: 14px;
-    color: #333;
+    color: var(--primary-text);
   }
 }
 
 .sort-select {
   padding: 6px 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
-  background: white;
+  background: var(--white-bg);
 }
 
 // Clase común para botones con solo iconos
@@ -102,11 +123,11 @@
 }
 .items-list {
   .item {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 16px;
     margin-bottom: 12px;
-    background: white;
+    background: var(--white-bg);
 
     .item-header {
       display: flex;
@@ -117,7 +138,7 @@
       .item-title {
         font-size: 16px;
         margin: 0;
-        color: #333;
+        color: var(--primary-text);
         flex: 1;
       }
 
@@ -133,11 +154,11 @@
 
           .decrement-btn {
             @extend .icon-btn;
-            background: #ffc107;
-            color: #212529;
+            background: var(--warning-yellow);
+            color: var(--primary-text);
 
             &:hover {
-              background: #e0a800;
+              background: var(--warning-yellow-hover);
             }
           }
 
@@ -150,11 +171,11 @@
 
           .increment-btn {
             @extend .icon-btn;
-            background: #28a745;
-            color: white;
+            background: var(--success-green);
+            color: var(--white-bg);
 
             &:hover {
-              background: #218838;
+              background: var(--success-green-hover);
             }
           }
         }
@@ -165,11 +186,11 @@
 
           .delete-btn {
             @extend .icon-btn;
-            background: #dc3545;
-            color: white;
+            background: var(--danger-red);
+            color: var(--white-bg);
 
             &:hover {
-              background: #c82333;
+              background: var(--danger-red-hover);
             }
           }
         }
