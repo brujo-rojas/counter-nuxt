@@ -12,6 +12,28 @@
     </div>
   </div>
 
+  <div class="sort-controls">
+    <div class="sort-group">
+      <label>Ordenar por:</label>
+      <select v-model="sortBy" @change="updateSortBy" class="sort-select">
+        <option value="">-</option>
+        <option value="title">Título</option>
+        <option value="value">Valor</option>
+      </select>
+    </div>
+    
+    <div class="sort-group">
+      <label class="sort-checkbox">
+        <input 
+          v-model="ascending" 
+          @change="updateAscending"
+          type="checkbox"
+        />
+        Ascendente
+      </label>
+    </div>
+  </div>
+
   <div class="items-list">
     <div v-for="item in filteredItems" :key="item.id" class="item">
       <div class="item-header">
@@ -51,16 +73,28 @@
 <script setup>
 import { ref } from "vue";
 import store from "../../stores/index";
+import filtersStore from "../../stores/filters";
 import { LIMITS } from "../../constants/limits";
 import { useFilteredItems } from "../composables/useFilteredItems";
 import ItemDialog from "../components/ItemDialog.vue";
 
 const { allItems, filteredItems } = useFilteredItems();
 
+const sortBy = ref(filtersStore.state.sortBy);
+const ascending = ref(filtersStore.state.ascending);
+
 const editMode = ref(false);
 const editingItemId = ref(null);
 const showDialog = ref(false);
 const dialogItem = ref(null);
+
+const updateSortBy = () => {
+  filtersStore.dispatch("setSortBy", sortBy.value);
+};
+
+const updateAscending = () => {
+  filtersStore.dispatch("setAscending", ascending.value);
+};
 
 const openDialog = () => {
   editMode.value = false;

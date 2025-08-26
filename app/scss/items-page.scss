@@ -43,6 +43,38 @@
     color: #666;
     font-size: 12px;
   }
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.sort-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  label {
+    font-size: 14px;
+    color: #333;
+  }
+}
+
+.sort-select {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+}
+
+.sort-checkbox {
+  cursor: pointer;
 }.items-list {
   .item {
     border: 1px solid #ddd;
