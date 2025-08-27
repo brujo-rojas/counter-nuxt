@@ -3,18 +3,16 @@ footer {
   color: var(--footer-text);
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid var(--footer-border);
   margin-top: 2rem;
   position: sticky;
   bottom: 0;
-}
+  border-top: 1px solid var(--footer-border);
 
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  
-  p {
-    margin: 4px 0;
-    font-size: 14px;
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
   }
 }

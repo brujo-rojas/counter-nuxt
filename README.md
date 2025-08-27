@@ -20,5 +20,5 @@ npm run dev
 
 - CRUD de items
 - Filtros y búsqueda
-- Persistencia localStorage/sessionStorage
-- Límites: 20 items máximo, valores 0-100
+- Persistencia de items en localStorage y filtro en sessionStorage
+- Límites: 20 items máximo, valores 0-20 , titulo con máximo de 20 caracteres

@@ -1,24 +1,3 @@
-// Variables CSS para Items Page
-:root {
-  --primary-text: #333;
-  --secondary-text: #666;
-  --light-bg: #f8f9fa;
-  --white-bg: white;
-  --border-color: #ddd;
-  --primary-blue: #007bff;
-  --primary-blue-hover: #0056b3;
-  --success-green: #28a745;
-  --success-green-hover: #218838;
-  --warning-yellow: #ffc107;
-  --warning-yellow-hover: #e0a800;
-  --danger-red: #dc3545;
-  --danger-red-hover: #c82333;
-  --disabled-gray: #6c757d;
-  --error-bg: #f8d7da;
-  --error-text: #721c24;
-  --error-border: #f5c6cb;
-}
-
 .items-header {
   display: flex;
   justify-content: space-between;

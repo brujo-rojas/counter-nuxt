@@ -1,21 +1,3 @@
-// Variables CSS para Dialog
-:root {
-  --dialog-overlay: rgba(0, 0, 0, 0.5);
-  --dialog-bg: white;
-  --dialog-shadow: rgba(0, 0, 0, 0.15);
-  --dialog-border: #eee;
-  --dialog-text: #333;
-  --dialog-text-secondary: #666;
-  --dialog-input-border: #ddd;
-  --dialog-input-focus: #007bff;
-  --dialog-save-btn: #007bff;
-  --dialog-save-hover: #0056b3;
-  --dialog-cancel-btn: #6c757d;
-  --dialog-cancel-hover: #545b62;
-  --error-message-bg: #f8d7da;
-  --error-message-text: #721c24;
-}
-
 .dialog-overlay {
   position: fixed;
   top: 0;
@@ -43,7 +25,7 @@
   justify-content: space-between;
   padding: 16px;
   border-bottom: 1px solid var(--dialog-border);
-  
+
   h3 {
     margin: 0;
     color: var(--dialog-text);
@@ -56,7 +38,7 @@
   font-size: 18px;
   cursor: pointer;
   color: var(--dialog-text-secondary);
-  
+
   &:hover {
     color: var(--dialog-text);
   }
@@ -75,7 +57,7 @@
     font-weight: 500;
     color: var(--dialog-text);
   }
-  
+
   .character-count {
     font-size: 12px;
     color: var(--dialog-text-secondary);
@@ -106,7 +88,7 @@
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-  
+
   button {
     padding: 8px 16px;
     border: none;
@@ -117,7 +99,7 @@
   .save-btn {
     background: var(--dialog-save-btn);
     color: var(--dialog-bg);
-    
+
     &:hover {
       background: var(--dialog-save-hover);
     }
@@ -126,7 +108,7 @@
   .cancel-btn {
     background: var(--dialog-cancel-btn);
     color: var(--dialog-bg);
-    
+
     &:hover {
       background: var(--dialog-cancel-hover);
     }
@@ -140,4 +122,3 @@
   border-radius: 4px;
   margin-top: 8px;
 }
-
