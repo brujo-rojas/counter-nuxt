@@ -2,49 +2,54 @@
   <header>
     <div class="content">
       <div class="filters">
+        <h3 class="filters-title">Filtros</h3>
         <div class="row">
-          <div class="group">
-            <label>
-              <Icon name="heroicons:magnifying-glass" />
-            </label>
-            <input
-              v-model="searchText"
-              @input="updateSearchText"
-              placeholder="Buscar"
-              class="input"
-            />
+          <div class="left-filters">
+            <div class="group">
+              <label>
+                <Icon name="heroicons:magnifying-glass" />
+              </label>
+              <input
+                v-model="searchText"
+                @input="updateSearchText"
+                placeholder="Buscar"
+                class="input"
+              />
+            </div>
           </div>
 
-          <div class="group">
-            <label>
-              <Icon name="heroicons:funnel" />
-              Min:
-            </label>
-            <input
-              v-model.number="minValue"
-              @input="updateMinValue"
-              type="number"
-              class="input small"
-            />
-          </div>
+          <div class="right-filters">
+            <div class="group">
+              <label>
+                <Icon name="heroicons:funnel" />
+                Min:
+              </label>
+              <input
+                v-model.number="minValue"
+                @input="updateMinValue"
+                type="number"
+                class="input small"
+              />
+            </div>
 
-          <div class="group">
-            <label>
-              <Icon name="heroicons:funnel" />
-              Max:
-            </label>
-            <input
-              v-model.number="maxValue"
-              @input="updateMaxValue"
-              type="number"
-              class="input small"
-            />
-          </div>
+            <div class="group">
+              <label>
+                <Icon name="heroicons:funnel" />
+                Max:
+              </label>
+              <input
+                v-model.number="maxValue"
+                @input="updateMaxValue"
+                type="number"
+                class="input small"
+              />
+            </div>
 
-          <button @click="resetFilters" class="reset">
-            <Icon name="heroicons:arrow-path" />
-            Reset ({{ activeFiltersCount }})
-          </button>
+            <button @click="resetFilters" class="reset">
+              <Icon name="heroicons:arrow-path" />
+              Reset ({{ activeFiltersCount }})
+            </button>
+          </div>
         </div>
       </div>
     </div>
