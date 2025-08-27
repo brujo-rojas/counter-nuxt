@@ -4,7 +4,7 @@
       <Transition name="dialog-content" appear>
         <div class="dialog-content" @click.stop>
           <div class="dialog-header">
-            <h3>{{ title }}</h3>
+            <h3>Agregar nuevo item</h3>
             <button @click="$emit('close')" class="close-btn">✕</button>
           </div>
 
@@ -49,9 +49,7 @@
 
           <div class="dialog-footer">
             <div class="dialog-actions">
-              <button @click="handleSave" class="save-btn">
-                {{ saveButtonText }}
-              </button>
+              <button @click="handleSave" class="save-btn">Agregar</button>
               <button @click="$emit('close')" class="cancel-btn">
                 Cancelar
               </button>
@@ -64,13 +62,11 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, watch } from "vue";
 import { LIMITS } from "../../constants/limits";
 
 const props = defineProps({
   show: Boolean,
-  item: Object,
-  isEdit: Boolean,
   maxItemsReached: Boolean,
 });
 
@@ -78,23 +74,6 @@ const emit = defineEmits(["close", "save"]);
 
 const localItem = ref({ title: "", value: 0 });
 const error = ref("");
-
-const title = computed(() => (props.isEdit ? "Editar Item" : "Agregar Item"));
-
-const saveButtonText = computed(() => (props.isEdit ? "Guardar" : "Agregar"));
-
-watch(
-  () => props.item,
-  (newItem) => {
-    if (newItem) {
-      localItem.value = { ...newItem };
-    } else {
-      localItem.value = { title: "", value: 0 };
-    }
-    error.value = "";
-  },
-  { immediate: true }
-);
 
 watch(
   () => props.show,
@@ -128,7 +107,7 @@ const validateItem = () => {
     return false;
   }
 
-  if (!props.isEdit && props.maxItemsReached) {
+  if (props.maxItemsReached) {
     error.value = `Máximo ${LIMITS.MAX_ITEMS} items permitidos`;
     return false;
   }
@@ -136,9 +115,15 @@ const validateItem = () => {
   return true;
 };
 
+const clear = () => {
+  localItem.value = { title: "", value: 0 };
+  error.value = "";
+};
+
 const handleSave = () => {
   if (validateItem()) {
     emit("save", { ...localItem.value });
+    clear();
   }
 };
 </script>

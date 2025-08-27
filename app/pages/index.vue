@@ -70,8 +70,6 @@
 
   <ItemDialog
     :show="showDialog"
-    :item="dialogItem"
-    :is-edit="editMode"
     :max-items-reached="allItems.length >= LIMITS.MAX_ITEMS"
     @close="closeDialog"
     @save="handleSave"
@@ -91,10 +89,7 @@ const { allItems, filteredItems } = useFilteredItems();
 const sortBy = ref(filtersStore.state.sortBy);
 const ascending = ref(filtersStore.state.ascending);
 
-const editMode = ref(false);
-const editingItemId = ref(null);
 const showDialog = ref(false);
-const dialogItem = ref(null);
 const errorMessage = ref("");
 
 const updateSortBy = () => {
@@ -106,32 +101,18 @@ const updateAscending = () => {
 };
 
 const openDialog = () => {
-  editMode.value = false;
-  editingItemId.value = null;
-  dialogItem.value = null;
   showDialog.value = true;
 };
 
 const closeDialog = () => {
   showDialog.value = false;
-  editMode.value = false;
-  editingItemId.value = null;
-  dialogItem.value = null;
   errorMessage.value = "";
 };
 
 const handleSave = (itemData) => {
   try {
     errorMessage.value = "";
-
-    if (editMode.value) {
-      store.dispatch("updateItem", {
-        id: editingItemId.value,
-        ...itemData,
-      });
-    } else {
-      store.dispatch("addItem", itemData);
-    }
+    store.dispatch("addItem", itemData);
     closeDialog();
   } catch (error) {
     errorMessage.value = error.message;
