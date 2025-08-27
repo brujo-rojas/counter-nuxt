@@ -1,60 +1,66 @@
 <template>
-  <div v-if="show" class="dialog-overlay" @click="$emit('close')">
-    <div class="dialog-content" @click.stop>
-      <div class="dialog-header">
-        <h3>{{ title }}</h3>
-        <button @click="$emit('close')" class="close-btn">✕</button>
-      </div>
+  <Transition name="dialog" appear>
+    <div v-if="show" class="dialog-overlay" @click="$emit('close')">
+      <Transition name="dialog-content" appear>
+        <div class="dialog-content" @click.stop>
+          <div class="dialog-header">
+            <h3>{{ title }}</h3>
+            <button @click="$emit('close')" class="close-btn">✕</button>
+          </div>
 
-      <div class="dialog-body">
-        <div class="input-group">
-          <label for="item-title">
-            Título (máx {{ LIMITS.MAX_TITLE_LENGTH }} caracteres):
-          </label>
-          <input
-            id="item-title"
-            v-model="localItem.title"
-            :maxlength="LIMITS.MAX_TITLE_LENGTH"
-            placeholder="Ingresa el título"
-            class="dialog-input"
-            @keyup.enter="handleSave"
-          />
-          <div class="character-count">
-            {{ localItem.title.length }}/{{ LIMITS.MAX_TITLE_LENGTH }}
+          <div class="dialog-body">
+            <div class="input-group">
+              <label for="item-title">
+                Título (máx {{ LIMITS.MAX_TITLE_LENGTH }} caracteres):
+              </label>
+              <input
+                id="item-title"
+                v-model="localItem.title"
+                :maxlength="LIMITS.MAX_TITLE_LENGTH"
+                placeholder="Ingresa el título"
+                class="dialog-input"
+                @keyup.enter="handleSave"
+              />
+              <div class="character-count">
+                {{ localItem.title.length }}/{{ LIMITS.MAX_TITLE_LENGTH }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="item-value">
+                Valor (máx {{ LIMITS.MAX_ITEM_VALUE }}):
+              </label>
+              <input
+                id="item-value"
+                v-model.number="localItem.value"
+                type="number"
+                :min="LIMITS.MIN_ITEM_VALUE"
+                :max="LIMITS.MAX_ITEM_VALUE"
+                placeholder="Ingresa el valor"
+                class="dialog-input"
+                @keyup.enter="handleSave"
+              />
+            </div>
+
+            <div v-if="error" class="error-message">
+              {{ error }}
+            </div>
+          </div>
+
+          <div class="dialog-footer">
+            <div class="dialog-actions">
+              <button @click="handleSave" class="save-btn">
+                {{ saveButtonText }}
+              </button>
+              <button @click="$emit('close')" class="cancel-btn">
+                Cancelar
+              </button>
+            </div>
           </div>
         </div>
-
-        <div class="input-group">
-          <label for="item-value">
-            Valor (máx {{ LIMITS.MAX_ITEM_VALUE }}):
-          </label>
-          <input
-            id="item-value"
-            v-model.number="localItem.value"
-            type="number"
-            :min="LIMITS.MIN_ITEM_VALUE"
-            :max="LIMITS.MAX_ITEM_VALUE"
-            placeholder="Ingresa el valor"
-            class="dialog-input"
-            @keyup.enter="handleSave"
-          />
-        </div>
-
-        <div v-if="error" class="error-message">
-          {{ error }}
-        </div>
-      </div>
-
-      <div class="dialog-footer">
-        <div class="dialog-actions">
-          <button @click="handleSave" class="save-btn">
-            {{ saveButtonText }}
-          </button>
-          <button @click="$emit('close')" class="cancel-btn">Cancelar</button>
-        </div>
-      </div>
+      </Transition>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <script setup>
