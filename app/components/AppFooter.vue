@@ -1,8 +1,8 @@
 <template>
   <footer>
     <div class="footer-content">
-      <div>Total General: {{ totalItems }}</div>
-      <div>Total Filtrado: {{ filteredTotal }}</div>
+      <div>Suma Total General: {{ totalItems }}</div>
+      <div>Suma Total Filtrado: {{ filteredTotal }}</div>
     </div>
   </footer>
 </template>
