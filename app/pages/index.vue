@@ -39,31 +39,33 @@
   </div>
 
   <div class="items-list">
-    <div v-for="item in filteredItems" :key="item.id" class="item">
-      <div class="item-header">
-        <h3 class="item-title">{{ item.title }}</h3>
+    <TransitionGroup name="item-list" tag="div" class="item-container">
+      <div v-for="item in filteredItems" :key="`item-${item.id}`" class="item">
+        <div class="item-header">
+          <h3 class="item-title">{{ item.title }}</h3>
 
-        <div class="item-controls">
-          <div class="counter-controls">
-            <button @click="decrementItem(item.id)" class="decrement-btn">
-              <Icon name="heroicons:minus" />
-            </button>
-            <span class="counter-value">
-              {{ item.value }}
-            </span>
-            <button @click="incrementItem(item.id)" class="increment-btn">
-              <Icon name="heroicons:plus" />
-            </button>
-          </div>
+          <div class="item-controls">
+            <div class="counter-controls">
+              <button @click="decrementItem(item.id)" class="decrement-btn">
+                <Icon name="heroicons:minus" />
+              </button>
+              <span class="counter-value">
+                {{ item.value }}
+              </span>
+              <button @click="incrementItem(item.id)" class="increment-btn">
+                <Icon name="heroicons:plus" />
+              </button>
+            </div>
 
-          <div class="item-actions">
-            <button @click="removeItem(item.id)" class="delete-btn">
-              <Icon name="heroicons:trash" />
-            </button>
+            <div class="item-actions">
+              <button @click="removeItem(item.id)" class="delete-btn">
+                <Icon name="heroicons:trash" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </TransitionGroup>
   </div>
 
   <ItemDialog
