@@ -6,12 +6,11 @@
           <div class="group">
             <label>
               <Icon name="heroicons:magnifying-glass" />
-              Buscar:
             </label>
             <input
               v-model="searchText"
               @input="updateSearchText"
-              placeholder="Buscar items..."
+              placeholder="Buscar"
               class="input"
             />
           </div>
