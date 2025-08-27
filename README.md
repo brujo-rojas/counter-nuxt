@@ -2,6 +2,8 @@
 
 Gestión de items con Nuxt 4 y Vuex.
 
+DEMO: [projas-counter.netlify.app](projas-counter.netlify.app)
+
 ## Stack
 
 - Nuxt 4.0.3
