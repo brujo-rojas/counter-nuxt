@@ -1,41 +1,15 @@
-// Variables CSS para Layout
-:root {
-  --layout-header-bg: #333;
-  --layout-text-light: #fff;
-  --layout-border: #ccc;
-}
-
 .layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   height: max-content;
 
-  header {
-    background-color: var(--layout-header-bg);
-    color: var(--layout-text-light);
-    padding: 1rem;
-    border-bottom: 1px solid var(--layout-border);
-    position: sticky;
-    top: 0;
-  }
-
   .main-container {
-    max-width: 800px;
+    max-width: var(--layout-max-width);
     width: 100%;
     height: max-content;
     min-height: 100%;
-
     margin: 0 auto;
-    padding: 20px;
-  }
-
-  footer {
-    background-color: var(--layout-header-bg);
-    color: var(--layout-text-light);
-    padding: 1rem;
-    border-top: 1px solid var(--layout-border);
-    position: sticky;
-    bottom: 0;
+    padding: var(--layout-padding);
   }
 }

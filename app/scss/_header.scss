@@ -1,20 +1,10 @@
-// Variables CSS para Header
-:root {
-  --header-bg: #343a40;
-  --header-border: #495057;
-  --header-text: #fff;
-  --header-filter-bg: rgba(0, 0, 0, 0.2);
-  --input-border: #495057;
-  --input-bg: #fff;
-  --reset-btn-bg: #6c757d;
-  --reset-btn-hover: #5a6268;
-  --reset-btn-text: white;
-}
-
 header {
   background: var(--header-bg);
   padding: 1rem;
   border-bottom: 1px solid var(--header-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
   .content {
     max-width: 1200px;

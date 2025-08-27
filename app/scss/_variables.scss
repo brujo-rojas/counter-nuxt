@@ -1,0 +1,59 @@
+// Variables CSS centralizadas
+:root {
+  // Layout
+  --layout-max-width: 800px;
+  --layout-padding: 20px;
+  
+  // Colores principales
+  --primary-text: #333;
+  --secondary-text: #666;
+  --light-bg: #f8f9fa;
+  --white-bg: white;
+  --border-color: #ddd;
+  
+  // Header/Footer
+  --header-bg: #343a40;
+  --header-border: #495057;
+  --header-text: #fff;
+  --header-filter-bg: rgba(0, 0, 0, 0.2);
+  --footer-bg: #343a40;
+  --footer-text: white;
+  --footer-border: #495057;
+  
+  // Inputs
+  --input-border: #495057;
+  --input-bg: #fff;
+  
+  // Botones
+  --primary-blue: #007bff;
+  --primary-blue-hover: #0056b3;
+  --success-green: #28a745;
+  --success-green-hover: #218838;
+  --warning-yellow: #ffc107;
+  --warning-yellow-hover: #e0a800;
+  --danger-red: #dc3545;
+  --danger-red-hover: #c82333;
+  --disabled-gray: #6c757d;
+  --reset-btn-bg: #6c757d;
+  --reset-btn-hover: #5a6268;
+  --reset-btn-text: white;
+  
+  // Dialog
+  --dialog-overlay: rgba(0, 0, 0, 0.5);
+  --dialog-bg: white;
+  --dialog-shadow: rgba(0, 0, 0, 0.15);
+  --dialog-border: #eee;
+  --dialog-text: #333;
+  --dialog-text-secondary: #666;
+  --dialog-input-border: #ddd;
+  --dialog-input-focus: #007bff;
+  --dialog-save-btn: #007bff;
+  --dialog-save-hover: #0056b3;
+  --dialog-cancel-btn: #6c757d;
+  --dialog-cancel-hover: #545b62;
+  
+  // Error messages
+  --error-bg: #f8d7da;
+  --error-text: #721c24;
+  --error-border: #f5c6cb;
+}
