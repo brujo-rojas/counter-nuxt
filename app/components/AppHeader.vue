@@ -56,12 +56,10 @@
 import { ref, computed } from "vue";
 import filtersStore from "../stores/filters";
 
-// Reactive refs for form inputs
 const searchText = ref(filtersStore.state.searchText);
 const minValue = ref(filtersStore.state.filters.minValue);
 const maxValue = ref(filtersStore.state.filters.maxValue);
 
-// Computed
 const activeFiltersCount = computed(
   () => filtersStore.getters.getActiveFiltersCount
 );
@@ -81,7 +79,6 @@ const updateMaxValue = () => {
 
 const resetFilters = () => {
   filtersStore.dispatch("resetFilters");
-  // Reset local refs
   searchText.value = "";
   minValue.value = 0;
   maxValue.value = 0;

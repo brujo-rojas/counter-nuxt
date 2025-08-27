@@ -1,6 +1,7 @@
 import { computed } from "vue";
-import store from "../../stores/index";
-import filtersStore from "../../stores/filters";
+import type { Item } from "../types/items";
+import store from "../stores/index";
+import filtersStore from "../stores/filters";
 
 export const useFilteredItems = () => {
   const allItems = computed(() => store.state.items);
@@ -29,9 +30,9 @@ export const useFilteredItems = () => {
     
     if (filtersStore.state.sortBy) {
       result = [...result].sort((a, b) => {
-        const field = filtersStore.state.sortBy;
-        const aVal = field === "value" ? a[field] : a[field].toLowerCase();
-        const bVal = field === "value" ? b[field] : b[field].toLowerCase();
+        const field = filtersStore.state.sortBy as keyof Item;
+        const aVal = field === "value" ? a[field] : (a[field] as string).toLowerCase();
+        const bVal = field === "value" ? b[field] : (b[field] as string).toLowerCase();
         
         let comparison = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
         return filtersStore.state.ascending ? comparison : -comparison;

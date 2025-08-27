@@ -8,28 +8,6 @@
 </template>
 
 <script setup>
-import { useFilteredItems } from "../composables/useFilteredItems";
-
+import { useFilteredItems } from "../../composables/useFilteredItems";
 const { totalItems, filteredTotal } = useFilteredItems();
 </script>
-
-<style scoped>
-footer {
-  background: #343a40;
-  padding: 1rem;
-  border-top: 1px solid #495057;
-  text-align: center;
-  margin-top: auto;
-  color: #fff;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.footer-content div {
-  font-size: 14px;
-}
-</style>

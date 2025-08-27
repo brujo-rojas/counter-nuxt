@@ -2,7 +2,9 @@
   <div class="items-header">
     <h1>Lista de Items</h1>
     <div class="header-info">
-      <span class="items-count">{{ allItems.length }}/{{ LIMITS.MAX_ITEMS }} items</span>
+      <span class="items-count"
+        >{{ allItems.length }}/{{ LIMITS.MAX_ITEMS }} items</span
+      >
       <button
         @click="openDialog"
         :disabled="allItems.length >= LIMITS.MAX_ITEMS"
@@ -27,14 +29,10 @@
         <option value="value">Valor</option>
       </select>
     </div>
-    
+
     <div class="sort-group">
       <label class="sort-checkbox">
-        <input 
-          v-model="ascending" 
-          @change="updateAscending"
-          type="checkbox"
-        />
+        <input v-model="ascending" @change="updateAscending" type="checkbox" />
         Ascendente
       </label>
     </div>
@@ -68,7 +66,7 @@
     </div>
   </div>
 
-  <ItemDialog 
+  <ItemDialog
     :show="showDialog"
     :item="dialogItem"
     :is-edit="editMode"
@@ -83,7 +81,7 @@ import { ref } from "vue";
 import store from "../../stores/index";
 import filtersStore from "../../stores/filters";
 import { LIMITS } from "../../constants/limits";
-import { useFilteredItems } from "../composables/useFilteredItems";
+import { useFilteredItems } from "../../composables/useFilteredItems";
 import ItemDialog from "../components/ItemDialog.vue";
 
 const { allItems, filteredItems } = useFilteredItems();
@@ -123,7 +121,7 @@ const closeDialog = () => {
 const handleSave = (itemData) => {
   try {
     errorMessage.value = "";
-    
+
     if (editMode.value) {
       store.dispatch("updateItem", {
         id: editingItemId.value,
